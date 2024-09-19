@@ -55,6 +55,19 @@
             width: 50%;
             margin: 0 auto;
         }
+
+        @media(max-height:700px){
+            #cadastro{
+                height: 100vh;
+                padding-bottom: 50px;
+            }
+        }
+
+        @media(max-height:470px){
+            #cadastro{
+                margin-top: 70px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -67,7 +80,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('reservas')}}">Reservas</a>
+                <a class="nav-link active" aria-current="page" href="{{route('showSalas')}}">Reservas</a>
                 </li>
             </ul>
             <form class="d-flex " id="usr">
