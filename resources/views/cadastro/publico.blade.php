@@ -2,7 +2,7 @@
 
 @section('content')
 <main id="cadastro">
-        <h1>Cadastro</h1>
+        <h1>Cadastro Publico</h1>
         <form action="" method="post">
             @csrf
             <div class="nome">
