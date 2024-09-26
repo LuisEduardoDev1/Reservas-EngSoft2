@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Reservas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         #usr{
             margin-right: 20px;
         }
-        /* .navbar .dropdown-menu .dropdown-item{
-            margin-right: 500px;
-            width: 0px;
-        } */
         #login{
             width: 50%;
             display: flex;
@@ -20,7 +17,6 @@
             justify-content: center;
             margin: 0 auto;
             height: 60vh;
-            /* align-items: center; */
         }
         #cadastro{
             width: 70%;
@@ -56,10 +52,65 @@
             margin: 0 auto;
         }
 
+        /*Página inicial*/
+        section.hero {
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+        }
+        section.features {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            padding: 20px;
+            color: white;
+        }
+        .feature {
+            width: 30%;
+            background-color: #007bff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .feature i {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        /*fim pagina inicial*/
+
+        
         @media(max-height:700px){
             #cadastro{
                 height: 100vh;
                 padding-bottom: 50px;
+            }
+            section.hero{
+                margin-top: 0px;
+            }
+        }
+        @media(max-height:600px){
+            section.hero{
+                margin-top: 0px;
+                padding: 20px;
+            }
+        }
+        @media(max-width:750px){
+            section.features{
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 10px 0;
+            }
+            .feature{
+                width: 80%;
+                margin-bottom: 15px;
+            }
+            section.hero{
+                margin-top: 0px;
+                padding: 20px;
             }
         }
 
@@ -73,14 +124,14 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
     <div class="container-fluid">
-        <b><a class="navbar-brand" href="{{route('login')}}">Inicio</a></b>
+        <b><a class="navbar-brand" href="{{route('inicio')}}">Inicio</a></b>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('showSalas')}}">Reservas</a>
+                <a class="nav-link active" aria-current="page" href="{{route('UsrShowSalas')}}">Reservas</a>
                 </li>
             </ul>
             <form class="d-flex " id="usr">
@@ -91,7 +142,7 @@
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ route('editUser', Auth::user()->id_usuario) }}">
-                                <i class="fas fa-user-edit"></i> Editar Perfil
+                                 Editar Perfil
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="GET">
                                 @csrf

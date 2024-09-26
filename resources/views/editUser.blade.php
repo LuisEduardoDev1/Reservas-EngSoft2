@@ -21,8 +21,8 @@
                 <input type="email" class="form-control" name="campoEmail" value="{{$usuario->email}}" id="campoEmail" required>
             </div>
             <div>
-                <label for="campoCurso" class="form-label mt-3">Curso:</label>
-                <input type="text" class="form-control" name="campoCurso" value="{{$usuario->curso}}" id="campoCurso" required>
+                <label for="campoCurso" class="form-label mt-3">CPF:</label>
+                <input type="text" class="form-control" name="campoCurso" value="{{$usuario->cpf}}" id="campoCurso" readonly>
             </div>
             <div>
                 <label for="campoSenha" class="form-label mt-3">Senha:</label>

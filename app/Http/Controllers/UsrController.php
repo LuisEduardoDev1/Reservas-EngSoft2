@@ -100,7 +100,7 @@ class UsrController extends Controller
 
         if($request->senha == $user->senha){
             Auth::login($user, true);
-            return redirect()->route('reservas');
+            return redirect()->route('inicio');
         }
 
         return redirect()->route("login")->withInput()->with("error", "Erro no login. Verifique os dados inseridos.");
@@ -126,7 +126,6 @@ class UsrController extends Controller
         $usuario->primeiro_nome = strtoupper($request->campoPrimNome);
         $usuario->sobrenome = strtoupper($request->campoSobrenome);
         $usuario->email = $request->input('campoEmail');
-        $usuario->cpf = $request->input('campoCpf');
         
         // Atualizar a senha se fornecida
         if ($request->filled('campoSenha')) {
@@ -142,6 +141,6 @@ class UsrController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('reservas')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->route('inicio')->with('success', 'Usuário atualizado com sucesso!');
     }
 }
