@@ -16,7 +16,7 @@ class CadastrosController extends Controller
         $register->quantidade = $request->campoQtd;
 
         $register->save();
-        return redirect()->route('reservas')->with('success', 'Sala cadastrada com sucesso!');
+        return redirect()->route('inicio')->with('success', 'Sala cadastrada com sucesso!');
     }
 
     public function index()
@@ -24,4 +24,6 @@ class CadastrosController extends Controller
         $salas = Salas::all();
         return view('salasDisp', compact('salas'));
     }
+
+    // public function cadastroDatas(){}
 }
