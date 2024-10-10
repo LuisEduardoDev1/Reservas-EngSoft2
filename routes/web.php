@@ -38,6 +38,7 @@ Route::middleware(['auth', TipoUserController::class])->group(function () {
     Route::get('/usuario/{id_usuario}/edit', [UsrController::class, 'edit'])->name('editUser');
     Route::put('/usuarios/{id_usuario}', [UsrController::class, 'update'])->name('updtUser');
     Route::get('/show/salas', [CadastrosController::class, 'index'])->name('ShowSalas');
+    Route::get('/show/equipamentos', [CadastrosController::class, 'showEquip'])->name('ShowEquipamentos');
     
     
     //Rotas específicas prefeitura

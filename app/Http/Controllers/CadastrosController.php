@@ -48,5 +48,9 @@ class CadastrosController extends Controller
         return view('salasDisp', compact('salas'));
     }
 
+    public function showEquip(){
+        $equipamentos = Equipamentos::all();
+        return view('equipDisp', compact('equipamentos'));
+    }
     // public function cadastroDatas(){}
 }
