@@ -142,6 +142,10 @@
             transform: translateY(-5px); /* Efeito de levitar */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
         }
+        #prefpro{
+            width: 70%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -156,6 +160,13 @@
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('ShowSalas')}}">Salas</a>
                 </li>
+                @auth
+                    @if (Auth::user()->tipo == 5)
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('PrefCadastroSalas')}}">Cadastrar Salas</a>
+                        </li>
+                    @endif
+                @endauth
                 @auth
                     @if (Auth::user()->tipo == 3)
                         <li class="nav-item">

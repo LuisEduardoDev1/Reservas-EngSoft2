@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CadastrosController;
 use App\Http\Controllers\DiretorController;
+use App\Http\Controllers\PrefeituraController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\TipoUserController;
 use App\Http\Controllers\UsrController;
@@ -21,7 +22,10 @@ Route::get('/cadastro/professor', function() {return view('cadastro.professor');
 Route::post('/cadastro/professor', [ProfessorController::class, 'cadastrar']);
 
 Route::get('/cadastro/proReitura', function() {return view('cadastro.proReitura');})->name('cadastroProReitura');
+
 Route::get('/cadastro/prefeitura', function() {return view('cadastro.prefeitura');})->name('cadastroPrefeitura');
+Route::post('/cadastro/prefeitura', [PrefeituraController::class, 'cadastrar']);
+
 Route::get('/cadastro/diretor', function() {return view('cadastro.diretor');})->name('cadastroDiretor');
 Route::post('/cadastro/diretor', [DiretorController::class, 'cadastrar']);
 

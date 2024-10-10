@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prefeitura;
 use Illuminate\Http\Request;
 use App\Models\User;
 // use Illuminate\Contracts\Session\Session;
@@ -66,9 +67,9 @@ class UsrController extends Controller
             return redirect()->route('cadastro')->withInput()->with("error", "Senhas diferentes. Verifique os dados inseridos.");
         }
 
-        if (!$this->verificaCPF($request->campoCpf)) {
-            return redirect()->route('cadastro')->withInput()->with("error", "CPF já cadastrado em nosso sistema.");
-        }
+        // if (!$this->verificaCPF($request->campoCpf)) {
+        //     return redirect()->route('cadastro')->withInput()->with("error", "CPF já cadastrado em nosso sistema.");
+        // }
 
         $register = new User;
 

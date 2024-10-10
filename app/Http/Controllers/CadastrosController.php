@@ -38,7 +38,7 @@ class CadastrosController extends Controller
         
         $register->save();
     
-        return redirect()->route('adminCadastroEquipamentos')->with('success', 'Equipamento cadastrado com sucesso!');
+        return redirect()->route('DirCadastroEquipamentos')->with('success', 'Equipamento cadastrado com sucesso!');
     }
     
 
