@@ -134,6 +134,13 @@
                 <a class="nav-link active" aria-current="page" href="{{route('ShowSalas')}}">Salas</a>
                 </li>
             </ul>
+            @auth
+                @if (Auth::user()->tipo == 3)
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('DirCadastroEquipamentos') }}">Cadastras Salas</a>
+                </li>
+                    @endif
+                @endauth
             <form class="d-flex " id="usr">
                 @auth
                     <div class="nav-item dropdown">
