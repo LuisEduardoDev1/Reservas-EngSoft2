@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('equipamentos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_equipamentos');
+            $table->string('nome', 45);
+            $table->integer('quantidade');
+            $table->string('marca', 50);
+            $table->string('descricao', 255);
+            $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
     }
 

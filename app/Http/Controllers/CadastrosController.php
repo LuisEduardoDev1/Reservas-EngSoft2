@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipamentos;
 use App\Models\Salas;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,28 @@ class CadastrosController extends Controller
         $register->save();
         return redirect()->route('inicio')->with('success', 'Sala cadastrada com sucesso!');
     }
+
+    public function cadastrarEquipamento(Request $request){
+        // Validação
+        $request->validate([
+            'campoEquipamento' => 'required',
+            'campoQtd' => 'required|integer',
+            'campoMarca' => 'required|string',
+            'campoDescricao' => 'required|string',
+        ]);
+    
+        // Criação do registro
+        $register = new Equipamentos;
+        $register->nome = $request->input('campoEquipamento');
+        $register->quantidade = $request->input('campoQtd');
+        $register->marca = $request->input('campoMarca');
+        $register->descricao = $request->input('campoDescricao');
+        
+        $register->save();
+    
+        return redirect()->route('adminCadastroEquipamentos')->with('success', 'Equipamento cadastrado com sucesso!');
+    }
+    
 
     public function index()
     {
