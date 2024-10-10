@@ -28,7 +28,7 @@ class TipoUserController extends Controller
         }
 
         // Se o tipo de usuário for 2 (PROFESSOR)
-        if ($tipoUsuario == 2) {
+        if ($tipoUsuario != 2) {
             if (strpos($rota, 'Prof') !== false) {
                 abort(403, 'Acesso não autorizado.');
             }
