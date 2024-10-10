@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {return view('inicio');})->name('inicio');
 
 Route::get('/calendario', function () {return view('calendario');})->name('calendario');
-
+Route::get('/escolher', function() {return view('cadastro.escolher');})->name('escolher');
 
 Route::get('/cadastro/publico', function() {return view('cadastro.publico');})->name('cadastroPubl');
 Route::post('/cadastro/publico', [UsrController::class, 'cadastrar']);
