@@ -18,6 +18,17 @@
             margin: 0 auto;
             height: 60vh;
         }
+        .custom-btn {
+            border-radius: 20px; /* Bordas arredondadas */
+            padding: 15px 20px; /* Padding maior */
+            font-size: 16px; /* Tamanho da fonte */
+            transition: transform 0.3s, box-shadow 0.3s; /* Efeito de transição */
+        }
+
+        .custom-btn:hover {
+            transform: translateY(-5px); /* Efeito de levitar */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
         #cadastro{
             width: 70%;
             margin: 0 auto;
