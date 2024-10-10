@@ -8,6 +8,8 @@ use App\Http\Controllers\UsrController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return view('inicio');})->name('inicio');
+Route::get('/escolher', function() {return view('cadastro.escolher');})->name('escolher');
+
 
 Route::get('/calendario', function () {return view('calendario');})->name('calendario');
 
@@ -26,6 +28,7 @@ Route::post('/cadastro/diretor', [DiretorController::class, 'cadastrar']);
 Route::get('/login', function(){return view('login');})->name('login');
 Route::post('/login', [UsrController::class, 'logar']);
 Route::get('/logout', [UsrController::class, 'logout'])->name('logout');
+
 
 Route::middleware(['auth', TipoUserController::class])->group(function () {
     Route::get('/usuario/{id_usuario}/edit', [UsrController::class, 'edit'])->name('editUser');

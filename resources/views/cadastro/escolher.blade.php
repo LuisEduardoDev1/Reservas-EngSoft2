@@ -7,27 +7,27 @@
 
     <div class="row text-center mt-5">
         <div class="col-md-2 mb-3">
-            <a href="/cadastro/diretor" class="btn btn-primary custom-btn">
+            <a href="{{route('cadastroDiretor')}}" class="btn btn-primary custom-btn">
                 <i class="fas fa-user-tie"></i> Diretor
             </a>
         </div>
         <div class="col-md-2 mb-3">
-            <a href="/cadastro/prefeitura" class="btn btn-success custom-btn">
+            <a href="{{route('cadastroPrefeitura')}}" class="btn btn-success custom-btn">
                 <i class="fas fa-city"></i> Prefeitura
             </a>
         </div>
         <div class="col-md-2 mb-3">
-            <a href="/cadastro/pro-reitoria" class="btn btn-warning custom-btn">
+            <a href="{{route('cadastroProReitura')}}" class="btn btn-warning custom-btn">
                 <i class="fas fa-university"></i> Pro-Reitoria
             </a>
         </div>
         <div class="col-md-2 mb-3">
-            <a href="/cadastro/professor" class="btn btn-info custom-btn">
+            <a href="{{route('cadastroProfessor')}}" class="btn btn-info custom-btn">
                 <i class="fas fa-chalkboard-teacher"></i> Professor
             </a>
         </div>
         <div class="col-md-2 mb-3">
-            <a href="/cadastro/publico" class="btn btn-secondary custom-btn">
+            <a href="{{route('cadastroPubl')}}" class="btn btn-secondary custom-btn">
                 <i class="fas fa-users"></i> Público
             </a>
         </div>
