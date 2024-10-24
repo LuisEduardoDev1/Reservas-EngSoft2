@@ -169,19 +169,37 @@
                 @endauth
                 @auth
                     @if (Auth::user()->tipo == 3)
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('DirCadastroEquipamentos') }}">Equipamentos</a>
-                        </li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Equipamentos
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('DirCadastroEquipamentos') }}">
+                                 Cadastrar novo
+                            </a>
+                            <a class="dropdown-item" aria-current="page" href="{{route('ShowEquipamentos')}}">Cadastrados</a>
+                        </div>
+                    </div>
+                    @else
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('ShowEquipamentos')}}">Equipamentos</a>
+                    </li>
                     @endif
                 @endauth
             </ul>
-            <form class="d-flex " id="usr">
+            <form class="d-flex" id="usr">
                 @auth
                     <div class="nav-item dropdown">
                         <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if(Auth::user()->tipo == 5)
+                            {{Auth::user()->nome_prefeitura}} 
+                        @elseif (Auth::user()->tipo == 4)  
+                            {{ Auth::user()->nome_proReitoria }}
+                        @else
                             {{ Auth::user()->primeiro_nome }}
+                        @endif
                         </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu mr-4">
                             <a class="dropdown-item" href="{{ route('editUser', Auth::user()->id_usuario) }}">
                                  Editar Perfil
                             </a>

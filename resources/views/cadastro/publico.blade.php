@@ -5,6 +5,7 @@
         <h1>Cadastro Publico</h1>
         <form action="" method="post">
             @csrf
+            <input type="text" style="visibility: hidden;" id="campoTipo" name="campoTipo" value="1"></input>
             <div class="nome">
                 <div>
                     <label for="campoPrimNome" class="form-label mt-3">Nome:</label>

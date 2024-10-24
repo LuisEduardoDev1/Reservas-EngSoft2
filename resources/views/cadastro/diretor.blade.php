@@ -2,9 +2,10 @@
 
 @section('content')
 <main id="cadastro">
-        <h1>Cadastro</h1>
+        <h1>Cadastro Diretor</h1>
         <form action="" method="post">
             @csrf
+            <input type="text" style="visibility: hidden;" id="campoTipo" name="campoTipo" value="3"></input>
             <div class="nome">
                 <div>
                     <label for="campoPrimNome" class="form-label mt-3">Nome:</label>
