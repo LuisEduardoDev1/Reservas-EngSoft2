@@ -22,7 +22,7 @@ class Equipamentos extends Model
     protected $fillable = [
         'id_equipamentos',
         'nome',
-        'quantidade',
+        'serialNum',
         'marca',
         'descricao'
     ];

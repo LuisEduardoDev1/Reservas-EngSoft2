@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Salas extends Model
+class ReservaProRei extends Model
 {
     use HasFactory;
 
-    protected $table = "salas";
-    protected $primaryKey = 'id_sala';
+    protected $table = "reservaProRei";
+    protected $primaryKey = 'id_reserva_pro_reitoria';
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +18,13 @@ class Salas extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_reserva_pro_reitoria',
         'id_sala',
-        'numero',
-        'quantidade',
-        'tamanho'
+        'data',
+        'horario_inicio',
+        'horario_fim',
+        'descricao',
+        'status',
+        'id_pro_reitoria'
     ];
 }
