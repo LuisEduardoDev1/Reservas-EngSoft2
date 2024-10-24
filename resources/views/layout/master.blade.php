@@ -180,6 +180,18 @@
                             <a class="dropdown-item" aria-current="page" href="{{route('ShowEquipamentos')}}">Cadastrados</a>
                         </div>
                     </div>
+                    @elseif (Auth::user()->tipo == 2)
+                    <div class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reservas
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">
+                                Minhas reservas
+                            </a>
+                            <a class="dropdown-item" aria-current="page" href="{{route('ProReservaSalas')}}">Solicitar pré-reserva</a>
+                        </div>
+                    </div>
                     @else
                     <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('ShowEquipamentos')}}">Equipamentos</a>
