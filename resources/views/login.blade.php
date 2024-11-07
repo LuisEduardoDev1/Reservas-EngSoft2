@@ -2,23 +2,8 @@
 
 @section('content')
 <main id="login">
-    <!-- <div id="alertas" class="mt-4">
-        @if(session('success'))
-        <div class="alert alert-success" role="alert">
-            <i class="bi bi-check"></i>
-            {{ session('success') }}
-        </div>
-        @endif
-        
-        @if(session('error'))
-        <div class="alert alert-danger" role="alert">
-            <i class="bi bi-exclamation-triangle text-danger"></i>
-            {{ session('error') }}
-        </div>
-        @endif        
-    </div> -->
 
-    <h1 class="mb-4">Login</h1>
+    <h1 class="mb-4">Faça seu Login</h1>
         <form action="" method="POST">
             @csrf
             <div>

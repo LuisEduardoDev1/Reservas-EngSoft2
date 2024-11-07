@@ -15,6 +15,7 @@ class CadastrosController extends Controller
 
         $register->numero = $request->campoNumero;
         $register->quantidade = $request->campoQtd;
+        $register->tamanho = $request->campoTamanho;
 
         $register->save();
         return redirect()->route('inicio')->with('success', 'Sala cadastrada com sucesso!');
