@@ -55,8 +55,15 @@ class ReservaController extends Controller
     }
 
     public function showReservas(){
-        $reservas = ReservaProf::all();
+        $reservas = ReservaProf::where('status', 'aguardando aprovação')->get();
         return view('reservas.aguardando', compact('reservas'));
+    }
+
+    public function aceitarReserva($id){
+        $reserva = ReservaProf::findOrFail($id);
+        $reserva->status = 'aprovado';
+        $reserva->save();
+        return redirect()->route('PreReservaSalas')->with('success', 'Reserva aprovada com sucesso!');
     }
 
 }

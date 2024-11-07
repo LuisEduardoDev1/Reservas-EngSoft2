@@ -15,9 +15,11 @@
                         <i class="	fa fa-hourglass-3"></i> <b>Fim:</b> {{ $reserva->horario_fim }} <br>
                     </div>
                     <div>
-                        <a href="#" class="btn btn-warning btn-sm text-white mr-2">
-                            <i class="fas fa-edit"></i>
-                        </a>
+                        <form action="{{ route('PrefAceitarReserva', ['id' => $reserva->id_reserva_professor]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Você tem certeza que deseja aprovar esta reserva?');">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success">Aprovar</button>
+                        </form>
                         <form action="#" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');" style="display:inline;">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm">

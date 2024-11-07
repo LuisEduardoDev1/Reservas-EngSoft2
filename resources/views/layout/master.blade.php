@@ -157,13 +157,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('ShowSalas')}}">Salas</a>
-                </li>
-                @auth
+            @auth
                     @if (Auth::user()->tipo == 5)
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('PrefCadastroSalas')}}">Cadastrar Salas</a>
+                            <a class="nav-link active" aria-current="page" href="{{route('PreReservaSalas')}}">Solicitações</a>
+                        </li>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Salas
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('PrefCadastroSalas') }}">
+                                    Cadastrar nova
+                                </a>
+                                <a class="dropdown-item" aria-current="page" href="{{route('ShowSalas')}}">Cadastradas</a>
+                            </div>
+                        </div>
+                        @else
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('ShowSalas')}}">Salas</a>
                         </li>
                     @endif
                 @endauth
