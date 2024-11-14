@@ -56,7 +56,7 @@ Route::middleware(['auth', TipoUserController::class])->group(function () {
     Route::get('/cadastro/salas', function () {return view('cadastro.salas');})->name('PreCadastroSalas');
     Route::post('/cadastro/salas', [CadastrosController::class, 'cadastroSala']);
     Route::get('/reserva/aguardo', [ReservaController::class, 'showReservas'])->name('PreReservaSalas');
-
+    Route::put('/reserva/aprovar/{id}', [ReservaController::class, 'aceitarReserva'])->name('PrefAceitarReserva');
     //Rotas específicas Diretor
     Route::get('/cadastro/equipamentos', function () {return view('cadastro.equipamentos');})->name('DirCadastroEquipamentos');
     Route::post('/cadastro/equipamentos', [EquipamentosController::class, 'cadastrarEquipamento']);
