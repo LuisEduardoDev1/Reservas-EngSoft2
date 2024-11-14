@@ -3,25 +3,9 @@
 @section('content')
 
 <main class="container mt-5">
-    <img id="logo" src="/img/logo.jpeg" width=70px heigth=70px alt="logo da uespi">
-    <style>
-        #logo {
-            margin-left: 38em;
-            margin-bottom: 10px;
-        }
+    <h2 class=" mb-4">Escolha o tipo de Usuário que deseja se cadastrar</h2>
 
-        #texto {
-            margin-left: 9em;
-            margin-top: 10px;
-        }
-
-        #botoes {
-            margin-left: 10em;
-        }
-    </style>
-    <h2 id="texto" class=" mb-4">Escolha o tipo de Usuário que deseja se cadastrar</h2>
-
-    <div id="botoes" class="row text-center mt-5">
+    <div class="row text-center mt-5">
         <div class="col-md-2 mb-3">
             <a href="{{route('cadastroDiretor')}}" class="btn btn-primary custom-btn">
                 <i class="fas fa-user-tie"></i> Diretor

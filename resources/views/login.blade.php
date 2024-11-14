@@ -2,30 +2,15 @@
 
 @section('content')
 <main id="login">
-    <!-- <div id="alertas" class="mt-4">
-        @if(session('success'))
-        <div class="alert alert-success" role="alert">
-            <i class="bi bi-check"></i>
-            {{ session('success') }}
-        </div>
-        @endif
-        
-        @if(session('error'))
-        <div class="alert alert-danger" role="alert">
-            <i class="bi bi-exclamation-triangle text-danger"></i>
-            {{ session('error') }}
-        </div>
-        @endif        
-    </div> -->
     <img id="logo" src="/img/logo.jpeg" width=70px heigth=70px alt="logo da uespi">
     <style>
         #logo {
-            margin-left: 18em;
             margin-bottom: 10px;
+            align-self: center;
         }
     </style>
+
     <h1 class="mb-4">Login</h1>
-    
         <form action="" method="POST">
             @csrf
             <div>

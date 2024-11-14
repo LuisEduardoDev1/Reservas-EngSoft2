@@ -10,11 +10,21 @@ class CadastrosController extends Controller
 {
     //
 
+    public function verificaSala($sala){
+        $verifica = Salas::where('numero', $sala)->first();
+        return $verifica; 
+    }
+
     public function cadastroSala(Request $request){
         $register = new Salas;
 
+        if($this->verificaSala($request->campoNumero)){
+            return redirect()->back()->with('error', 'Sala ja cadastrada!');
+        }
+
         $register->numero = $request->campoNumero;
         $register->quantidade = $request->campoQtd;
+        $register->tamanho = $request->campoTamanho;
 
         $register->save();
         return redirect()->route('inicio')->with('success', 'Sala cadastrada com sucesso!');
@@ -32,7 +42,7 @@ class CadastrosController extends Controller
         // Criação do registro
         $register = new Equipamentos;
         $register->nome = $request->input('campoEquipamento');
-        $register->quantidade = $request->input('campoQtd');
+        $register->quantidade = $request->input('campoSNumber');
         $register->marca = $request->input('campoMarca');
         $register->descricao = $request->input('campoDescricao');
         
@@ -52,5 +62,6 @@ class CadastrosController extends Controller
         $equipamentos = Equipamentos::all();
         return view('equipDisp', compact('equipamentos'));
     }
-    // public function cadastroDatas(){}
+    
+    
 }

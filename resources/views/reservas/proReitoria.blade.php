@@ -5,6 +5,7 @@
 <main>
 
     <h1>Reserva de salas</h1>
+    <span style="color: gray">Pró-Reitura</span>
 
     <form action="" method="post">
             @csrf
@@ -14,7 +15,7 @@
                     <select class="form-select" aria-label="Default select example" id="campoSala" name="campoSala">
                         <option value="" disabled selected>Selecione</option>
                         @foreach ($salas as $sala)
-                            <option value="{{ $sala->id_sala }}">{{ $sala->numero }}</option>
+                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
                         @endforeach
                     </select>
 

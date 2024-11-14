@@ -19,7 +19,8 @@ return new class extends Migration
             $table->time('horario_fim')->nullable(false);
             $table->string('descricao', 255)->nullable(false);
             $table->enum('status', ['aguardando aprovação', 'aprovado', 'cancelado'])->nullable(false);
-            $table->string('id_professor', 255)->nullable(false); // Supondo que id_professor seja uma referência a outra tabela
+            $table->string('primeiro_nome', 255)->nullable(false); 
+            $table->integer('id_professor')->nullable(false); 
             $table->timestamps(); // Cria as colunas created_at e updated_at
         });
     }

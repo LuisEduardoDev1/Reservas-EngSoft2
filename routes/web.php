@@ -21,7 +21,7 @@ Route::get('/cadastro/publico', function() {return view('cadastro.publico');})->
 Route::post('/cadastro/publico', [UsrController::class, 'cadastrar']);
 
 Route::get('/cadastro/professor', function() {return view('cadastro.professor');})->name('cadastroProfessor');
-Route::post('/cadastro/professor', [ProfessorController::class, 'cadastrar']);
+Route::post('/cadastro/professor', [UsrController::class, 'cadastrar']);
 
 Route::get('/cadastro/proReitura', function() {return view('cadastro.proReitura');})->name('cadastroProReitura');
 Route::post('/cadastro/proReitura', [UsrController::class, 'cadastrar']);
@@ -51,12 +51,15 @@ Route::middleware(['auth', TipoUserController::class])->group(function () {
     //Rotas específicas professor
     Route::get('/reserva/professor', [ReservaController::class, 'profReserva'])->name('ProReservaSalas');
     Route::post('/reserva/professor', [ReservaController::class, 'profStore']);
+    Route::get('reservas/minhas', [ReservaController::class, 'minhasReservas'])->name('MinhasReservas');
     
     //Rotas específicas prefeitura
     Route::get('/cadastro/salas', function () {return view('cadastro.salas');})->name('PrefCadastroSalas');
     Route::post('/cadastro/salas', [CadastrosController::class, 'cadastroSala']);
     Route::get('/reserva/aguardo', [ReservaController::class, 'showReservas'])->name('PreReservaSalas');
     Route::put('/reserva/aprovar/{id}', [ReservaController::class, 'aceitarReserva'])->name('PrefAceitarReserva');
+    Route::put('/reserva/cancelar/{id}', [ReservaController::class, 'cancelarReserva'])->name('PrefCancelarReserva');
+
     //Rotas específicas Diretor
     Route::get('/cadastro/equipamentos', function () {return view('cadastro.equipamentos');})->name('DirCadastroEquipamentos');
     Route::post('/cadastro/equipamentos', [EquipamentosController::class, 'cadastrarEquipamento']);
@@ -66,3 +69,4 @@ Route::middleware(['auth', TipoUserController::class])->group(function () {
 Route::get('/equipamentos/{id}/edit', [EquipamentosController::class, 'edit'])->name('DirEditEquipamentos');
 Route::put('/equipamentos/{id}', [EquipamentosController::class, 'update'])->name('DirAtualizaEquipamentos');
 Route::delete('/equipamentos/{id}', [EquipamentosController::class, 'destroy'])->name('DirDestroyEquipamentos');
+

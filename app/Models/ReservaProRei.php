@@ -10,7 +10,7 @@ class ReservaProRei extends Model
     use HasFactory;
 
     protected $table = "reservaProRei";
-    protected $primaryKey = 'id_reserva_pro_reitoria';
+    protected $primaryKey = 'id_reserva_professor';
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +18,7 @@ class ReservaProRei extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_reserva_pro_reitoria',
+        'id_reserva_professor',
         'id_sala',
         'data',
         'horario_inicio',

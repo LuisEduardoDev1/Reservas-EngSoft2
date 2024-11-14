@@ -14,7 +14,7 @@
                     <select class="form-select" aria-label="Default select example" id="campoSala" name="campoSala">
                         <option value="" disabled selected>Selecione</option>
                         @foreach ($salas as $sala)
-                            <option value="{{ $sala->id_sala }}">{{ $sala->numero }}</option>
+                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
                         @endforeach
                     </select>
 
@@ -39,7 +39,7 @@
                 <textarea rows="7" class="form-control" style="resize: none;" name="campoDescricao" value="{{old('campoDescricao')}}" id="campoDescricao" required>
                 </textarea>
             </div>
-            <div class="d-flex justify-content-end mt-3">
+            <div class="d-flex justify-content-end mt-3 mb-3">
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>
