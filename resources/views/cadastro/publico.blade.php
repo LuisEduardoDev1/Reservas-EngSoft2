@@ -9,7 +9,7 @@
                 <div>
                     <label for="campoPrimNome" class="form-label mt-3">Nome:</label>
                     <input type="text" class="form-control" name="campoPrimNome" value="{{old('campoPrimNome')}}" id="campoPrimNome" required>
-                </div>
+                </div> 
                 <div>
                     <label for="campoSobrenome" class="form-label mt-3">Sobrenome:</label>
                     <input type="text" class="form-control" name="campoSobrenome" value="{{old('campoSobrenome')}}" id="campoSobrenome" required>
