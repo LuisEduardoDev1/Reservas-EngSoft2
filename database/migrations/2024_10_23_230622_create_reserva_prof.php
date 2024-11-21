@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('status', ['aguardando aprovação', 'aprovado', 'cancelado'])->nullable(false);
             $table->string('primeiro_nome', 255)->nullable(false); 
             $table->integer('id_professor')->nullable(false); 
+            $table->string('motivo_cancelamento', 255)->nullable(true);
             $table->timestamps(); // Cria as colunas created_at e updated_at
         });
     }

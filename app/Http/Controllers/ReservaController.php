@@ -38,7 +38,7 @@ class ReservaController extends Controller
         })->orWhere(function($query) use ($fim) {
             $query->whereTime('horario_inicio', '<=', $fim)
                   ->whereTime('horario_fim', '>=', $fim);
-        })->first();
+        })->where('status', 'aprovado')->first();
 
         return $verifica;        
     }
@@ -124,10 +124,38 @@ class ReservaController extends Controller
         }
     }
 
-    public function cancelarReserva($id){
+    public function cancelarReserva($id, Request $request){
         $reserva = ReservaProf::findOrFail($id);
         $reserva->status = 'cancelado';
+        $reserva->motivo_cancelamento = $request->motivo_cancelamento;
         $reserva->save();
         return redirect()->route('PreReservaSalas')->with('success', 'Reserva cancelada com sucesso!');
+    }
+
+    public function aprovadas(){
+        $reservas = ReservaProf::where('status', 'aprovado')->get(); 
+        $reservasProRei = ReservaProRei::where('status', 'aprovado')->get();
+
+        return view('reservas.aprovadas', compact('reservas', 'reservasProRei'));
+    }
+
+    public function calendario(){
+        $reservas = collect(ReservaProf::where('status', 'aprovado')->get());
+    $reservasProRei = collect(ReservaProRei::where('status', 'aprovado')->get());
+
+        $eventos = $reservas->map(function ($reserva) {
+            return [
+                'title' => $reserva->primeiro_nome, // Substitua 'nome' pelo campo desejado
+                'start' => $reserva->data,
+            ];
+        })->merge($reservasProRei->map(function ($reservaProRei) {
+            return [
+                'title' => 'Pró-Reitoria', // Substitua 'nome' pelo campo desejado
+                'start' => $reservaProRei->data,
+            ];
+        }));
+    
+        // Envia os eventos para a view
+        return view('calendario', compact('eventos'));
     }
 }

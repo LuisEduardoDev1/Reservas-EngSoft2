@@ -16,16 +16,20 @@
                             {{ \Carbon\Carbon::parse($reserva->data)->format('d/m/Y') }}
                         </div>
                         <div>
+                            <i class="fa fas fa-user"></i> <strong>Professor(a):</strong> 
+                            {{ $reserva->primeiro_nome }}
+                        </div>
+                        <div>
                             <i class="fa fas fa-map-marker-alt text-success"></i> <strong>Sala:</strong> 
                             {{ $reserva->id_sala }}
                         </div>
                         <div>
-                            <i class="fa fa-hourglass-1 text-warning"></i> <strong>Início:</strong> 
-                            {{ $reserva->horario_inicio }}
+                            <i class="fa fa-clock text-warning"></i>
+                            <span><strong>Início:</strong> {{ \Carbon\Carbon::parse($reserva->horario_inicio)->format('H:i') }}</span>
                         </div>
                         <div>
-                            <i class="fa fa-hourglass-3 text-danger"></i> <strong>Fim:</strong> 
-                            {{ $reserva->horario_fim }}
+                            <i class="fa fa-clock text-danger"></i>
+                            <span><strong>Fim:</strong> {{ \Carbon\Carbon::parse($reserva->horario_fim)->format('H:i') }}</span>
                         </div>
                     </div>
         
@@ -37,14 +41,31 @@
                         <form action="{{ route('PrefAceitarReserva', ['id' => $reserva->id_reserva_professor]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Você tem certeza que deseja aprovar esta reserva?');">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-success">Aprovar</button>
-                        </form>
-                        <form action="{{ route('PrefCancelarReserva', ['id' => $reserva->id_reserva_professor]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar esta reserva?');" style="display:inline;">
+                            <button type="submit" class="btn btn-success btn-sm mb-2">
+                                <i class="far fa-thumbs-up"> Aprovar</i>
+                            </button>
+                        </form><br> 
+                        <button class="btn btn-danger btn-sm" id="openmodal" title="Cancelar">
+                            <i class="fas fa-ban"> Cancelar</i>
+                        </button>
+                        <form action="{{ route('PrefCancelarReserva', ['id' => $reserva->id_reserva_professor]) }}" method="POST" onsubmit="return confirm('Você tem certeza que deseja cancelar esta reserva?');" style="display:inline;">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button>
+
+                            <dialog  id="popup">
+                                <div style="display: flex; justify-content:space-between;" class="mb-4">
+                                    <h3>Motivo para o cancelamento:</h3><br>
+                                    <div>                                       
+                                        <button id="close" type="button" class="btn btn-danger btn-sm ">X</button>
+                                    </div>
+                                </div>
+
+                                <textarea name="motivo_cancelamento" id="motivo_cancelamento" rows="5" style="resize: none; width:100%"></textarea>
+
+                                <div style="display: flex; justify-content: end;">
+                                    <button type="submit" class="btn btn-primary" style="align-self: flex-end;">Enviar</button>
+                                </div>
+                            </dialog>
                         </form>
                     </div>
                 </li>
@@ -52,4 +73,16 @@
         </ul>
 </div>
 
+<script>
+    let open = document.getElementById('openmodal')
+    let modal = document.querySelector('dialog')
+    let close = document.getElementById("close")
+
+    open.onclick = function(){
+        modal.showModal()
+    }
+    close.onclick = function(){
+        modal.close()
+    }
+</script>
 @endsection

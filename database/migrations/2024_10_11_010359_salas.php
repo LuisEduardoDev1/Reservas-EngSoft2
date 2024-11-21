@@ -19,6 +19,44 @@ return new class extends Migration
             $table->date('created_at')->nullable();
             $table->date('updated_at')->nullable();
         });
+
+        DB::table('salas')->insert([
+            [
+                'numero' => '101',
+                'quantidade' => 20,
+                'tamanho' => 30.5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'numero' => '102',
+                'quantidade' => 35,
+                'tamanho' => 45.3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'numero' => '103',
+                'quantidade' => 30,
+                'tamanho' => 40.0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'numero' => '104',
+                'quantidade' => 55,
+                'tamanho' => 60.0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'numero' => '201',
+                'quantidade' => 40,
+                'tamanho' => 50.7,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 
     /**
