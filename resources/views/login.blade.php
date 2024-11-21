@@ -2,6 +2,15 @@
 
 @section('content')
 <main id="login">
+    <img id="logo" src="/img/logo.jpeg" width=70px heigth=70px alt="logo da uespi">
+    <style>
+        #logo {
+            margin-bottom: 10px;
+            align-self: center;
+        }
+    </style>
+
+    <h1 class="mb-4">Login</h1>
 
     <h1 class="mb-4">Faça seu Login</h1>
         <form action="" method="POST">

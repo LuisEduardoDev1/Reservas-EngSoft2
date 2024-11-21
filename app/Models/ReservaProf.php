@@ -25,6 +25,7 @@ class ReservaProf extends Model
         'horario_fim',
         'descricao',
         'status',
-        'id_professor'
+        'id_professor',
+        'primeiro_nome'
     ];
 }

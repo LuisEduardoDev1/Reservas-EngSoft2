@@ -64,27 +64,58 @@ class UsrController extends Controller
         $s1 = $request->campoSenha;
         $s2 = $request->campoConfirmSenha;
         if (!$this->comparaSenhas($s1, $s2)){
-            return redirect()->route('cadastro')->withInput()->with("error", "Senhas diferentes. Verifique os dados inseridos.");
+            return redirect()->back()->withInput()->with("error", "Senhas diferentes. Verifique os dados inseridos.");
         }
 
-        // if (!$this->verificaCPF($request->campoCpf)) {
-        //     return redirect()->route('cadastro')->withInput()->with("error", "CPF já cadastrado em nosso sistema.");
-        // }
-
-        $register = new User;
-
-        $cpfLimpo = self::limparTexto($request->campoCpf);
-
-        $register->primeiro_nome = strtoupper($request->campoPrimNome);
-        $register->sobrenome = strtoupper($request->campoSobrenome);
-        $register->email = $request->campoEmail;
-        $register->senha = $request->campoSenha;
-        $register->email = $request->campoEmail;
-        $register->cpf =  $cpfLimpo;
-
-        $register->save();
         
-        return redirect()->route('login');
+        $register = new User;
+        
+        $cpfLimpo = self::limparTexto($request->campoCpf);
+        
+        $tipo = $register->tipo = $request->campoTipo;
+        
+        if($tipo == 5){
+            $register->nome_prefeitura =strtoupper($request->nome_prefeitura);
+            $register->cnpj_prefeitura = $request->cnpj_prefeitura;
+            $register->cidade = strtoupper($request->cidade);
+            $register->email = $request->campoEmail;
+            $register->senha = $request->campoSenha;
+            
+            $register->save();
+            
+            return redirect()->route('login')->withInput()->with("success", "Usuário cadastrado com sucesso");
+        }else if($tipo == 4){
+            $register->nome_proReitoria = strtoupper($request->campoProReitura);
+            $register->universidade = strtoupper($request->campoUniversidade);
+            $register->email = $request->campoEmail;
+            $register->senha = $request->campoSenha;
+            
+            $register->save();
+            
+            return redirect()->route('login')->withInput()->with("success", "Usuário cadastrado com sucesso"); 
+        }else{
+            if (!$this->verificaCPF($request->campoCpf)) {
+                return redirect()->back()->withInput()->with("error", "CPF já cadastrado em nosso sistema.");
+            }
+            $register->primeiro_nome = strtoupper($request->campoPrimNome);
+            $register->sobrenome = strtoupper($request->campoSobrenome);
+            $register->email = $request->campoEmail;
+            $register->senha = $request->campoSenha;
+            $register->cpf =  $cpfLimpo;
+
+            $register->save();
+            
+            return redirect()->route('login')->withInput()->with("success", "Usuário cadastrado com sucesso");
+        }
+        // $register->primeiro_nome = strtoupper($request->campoPrimNome);
+        // $register->sobrenome = strtoupper($request->campoSobrenome);
+        // $register->email = $request->campoEmail;
+        // $register->senha = $request->campoSenha;
+        // $register->cpf =  $cpfLimpo;
+
+        // $register->save();
+        
+        return redirect()->back()->withInput()->with("error", "Deu erro");
     }
 
     public function logar(Request $request){

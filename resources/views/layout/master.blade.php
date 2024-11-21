@@ -67,7 +67,7 @@
         section.hero {
             color: rgb(0, 0, 0);
             text-align: center;
-            padding: 100px 20px;
+            padding: 50px 20px;
         }
         .hero h1 {
             font-size: 48px;
@@ -100,6 +100,10 @@
             }
             section.hero{
                 margin-top: 0px;
+            }
+            #logo{
+                margin-top: 20px;
+                width: 70px;
             }
         }
         @media(max-height:600px){
@@ -146,6 +150,14 @@
             width: 70%;
             margin: 0 auto;
         }
+
+        #reservaAprovada{
+            background-color: rgb(175, 255, 175)
+        }
+
+        #reservaCancelada{
+            background-color: rgb(255, 175, 175)
+        }
     </style>
 </head>
 <body>
@@ -157,7 +169,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            @auth
+                @auth
                     @if (Auth::user()->tipo == 5)
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('PreReservaSalas')}}">Solicitações</a>
@@ -179,6 +191,7 @@
                         </li>
                     @endif
                 @endauth
+                
                 @auth
                     @if (Auth::user()->tipo == 3)
                     <div class="nav-item dropdown">
@@ -198,10 +211,22 @@
                             Reservas
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('MinhasReservas')}}">
                                 Minhas reservas
                             </a>
                             <a class="dropdown-item" aria-current="page" href="{{route('ProReservaSalas')}}">Solicitar pré-reserva</a>
+                        </div>
+                    </div>
+                    @elseif (Auth::user()->tipo == 4)
+                    <div class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reservas
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('MinhasReservas')}}">
+                                Minhas reservas
+                            </a>
+                            <a class="dropdown-item" aria-current="page" href="{{route('ProReiReservaSalas')}}">Nova Reserva</a>
                         </div>
                     </div>
                     @else
