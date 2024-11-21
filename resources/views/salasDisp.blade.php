@@ -8,7 +8,9 @@
             @foreach ($salas as $sala)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <i class="fas fa-user"></i> {{ $sala->numero }}
+                        <i class="fas fa-map-marker-alt"></i> Número {{ $sala->numero }}<br>
+                        <i class="fas fa-users"></i> Capacidade {{ $sala->quantidade }}<br> 
+                        <i class="fas fa-expand-arrows-alt"></i> Tamanho {{ $sala->tamanho }} m²<br>
                     </div>
                     <div>
                         <a href="#" class="btn btn-warning btn-sm text-white mr-2">

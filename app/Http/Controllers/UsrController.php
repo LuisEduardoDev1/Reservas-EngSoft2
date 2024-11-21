@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prefeitura;
 use Illuminate\Http\Request;
 use App\Models\User;
 // use Illuminate\Contracts\Session\Session;
@@ -63,27 +64,58 @@ class UsrController extends Controller
         $s1 = $request->campoSenha;
         $s2 = $request->campoConfirmSenha;
         if (!$this->comparaSenhas($s1, $s2)){
-            return redirect()->route('cadastro')->withInput()->with("error", "Senhas diferentes. Verifique os dados inseridos.");
+            return redirect()->back()->withInput()->with("error", "Senhas diferentes. Verifique os dados inseridos.");
         }
 
-        if (!$this->verificaCPF($request->campoCpf)) {
-            return redirect()->route('cadastro')->withInput()->with("error", "CPF já cadastrado em nosso sistema.");
-        }
-
-        $register = new User;
-
-        $cpfLimpo = self::limparTexto($request->campoCpf);
-
-        $register->primeiro_nome = strtoupper($request->campoPrimNome);
-        $register->sobrenome = strtoupper($request->campoSobrenome);
-        $register->email = $request->campoEmail;
-        $register->senha = $request->campoSenha;
-        $register->email = $request->campoEmail;
-        $register->cpf =  $cpfLimpo;
-
-        $register->save();
         
-        return redirect()->route('login');
+        $register = new User;
+        
+        $cpfLimpo = self::limparTexto($request->campoCpf);
+        
+        $tipo = $register->tipo = $request->campoTipo;
+        
+        if($tipo == 5){
+            $register->nome_prefeitura =strtoupper($request->nome_prefeitura);
+            $register->cnpj_prefeitura = $request->cnpj_prefeitura;
+            $register->cidade = strtoupper($request->cidade);
+            $register->email = $request->campoEmail;
+            $register->senha = $request->campoSenha;
+            
+            $register->save();
+            
+            return redirect()->route('login')->withInput()->with("success", "Usuário cadastrado com sucesso");
+        }else if($tipo == 4){
+            $register->nome_proReitoria = strtoupper($request->campoProReitura);
+            $register->universidade = strtoupper($request->campoUniversidade);
+            $register->email = $request->campoEmail;
+            $register->senha = $request->campoSenha;
+            
+            $register->save();
+            
+            return redirect()->route('login')->withInput()->with("success", "Usuário cadastrado com sucesso"); 
+        }else{
+            if (!$this->verificaCPF($request->campoCpf)) {
+                return redirect()->back()->withInput()->with("error", "CPF já cadastrado em nosso sistema.");
+            }
+            $register->primeiro_nome = strtoupper($request->campoPrimNome);
+            $register->sobrenome = strtoupper($request->campoSobrenome);
+            $register->email = $request->campoEmail;
+            $register->senha = $request->campoSenha;
+            $register->cpf =  $cpfLimpo;
+
+            $register->save();
+            
+            return redirect()->route('login')->withInput()->with("success", "Usuário cadastrado com sucesso");
+        }
+        // $register->primeiro_nome = strtoupper($request->campoPrimNome);
+        // $register->sobrenome = strtoupper($request->campoSobrenome);
+        // $register->email = $request->campoEmail;
+        // $register->senha = $request->campoSenha;
+        // $register->cpf =  $cpfLimpo;
+
+        // $register->save();
+        
+        return redirect()->back()->withInput()->with("error", "Deu erro");
     }
 
     public function logar(Request $request){
@@ -100,7 +132,7 @@ class UsrController extends Controller
 
         if($request->senha == $user->senha){
             Auth::login($user, true);
-            return redirect()->route('reservas');
+            return redirect()->route('inicio');
         }
 
         return redirect()->route("login")->withInput()->with("error", "Erro no login. Verifique os dados inseridos.");
@@ -126,7 +158,6 @@ class UsrController extends Controller
         $usuario->primeiro_nome = strtoupper($request->campoPrimNome);
         $usuario->sobrenome = strtoupper($request->campoSobrenome);
         $usuario->email = $request->input('campoEmail');
-        $usuario->cpf = $request->input('campoCpf');
         
         // Atualizar a senha se fornecida
         if ($request->filled('campoSenha')) {
@@ -142,6 +173,6 @@ class UsrController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('reservas')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->route('inicio')->with('success', 'Usuário atualizado com sucesso!');
     }
 }

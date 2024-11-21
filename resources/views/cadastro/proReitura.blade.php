@@ -2,27 +2,23 @@
 
 @section('content')
 <main id="cadastro">
-        <h1>Cadastro Publico</h1>
+        <h1>Cadastro Pró-Reitura</h1>
         <form action="" method="post">
             @csrf
-            <input type="text" style="visibility: hidden;" id="campoTipo" name="campoTipo" value="1"></input>
+            <input type="text" style="visibility: hidden;" id="campoTipo" name="campoTipo" value="4"></input>
             <div class="nome">
                 <div>
-                    <label for="campoPrimNome" class="form-label mt-3">Nome:</label>
-                    <input type="text" class="form-control" name="campoPrimNome" value="{{old('campoPrimNome')}}" id="campoPrimNome" required>
-                </div> 
+                    <label for="campoProReitura" class="form-label mt-3">Nome:</label>
+                    <input type="text" class="form-control" name="campoProReitura" value="{{old('campoProReitura')}}" id="campoProReitura" required>
+                </div>
                 <div>
-                    <label for="campoSobrenome" class="form-label mt-3">Sobrenome:</label>
-                    <input type="text" class="form-control" name="campoSobrenome" value="{{old('campoSobrenome')}}" id="campoSobrenome" required>
+                    <label for="campoUniversidade" class="form-label mt-3">Universidade:</label>
+                    <input type="text" class="form-control" name="campoUniversidade" value="{{old('campoUniversidade')}}" id="campoUniversidade" required>
                 </div>
             </div>
             <div>
                 <label for="campoEmail" class="form-label mt-3">Email:</label>
                 <input type="email" class="form-control" name="campoEmail" value="{{old('campoEmail')}}" id="campoEmail" required>
-            </div>
-            <div>
-                <label for="campoCpf" class="form-label mt-3">Cpf:</label>
-                <input type="text" oninput="formatarCPF(this)" class="form-control" name="campoCpf" value="{{old('campoCpf')}}" id="campoCpf" required>
             </div>
             <div>
                 <label for="campoSenha" class="form-label mt-3">Senha:</label>
