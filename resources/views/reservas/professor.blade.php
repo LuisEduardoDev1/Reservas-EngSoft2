@@ -20,18 +20,18 @@
 
                 </div>
                 <div>
-                    <label for="campoData" class="form-label mt-3">Ano:</label>
+                    <label for="campoData" class="form-label mt-3">Data:</label>
                     <input type="date" class="form-control" value="{{old('campoData')}}" name="campoData" id="campoData" min="{{ date('Y-m-d') }}" required>
                 </div>
             </div>
             <div class="nome">
                 <div>
                     <label for="campoHoraIni" class="form-label mt-3">Horário início:</label>
-                    <input type="time" class="form-control" name="campoHoraIni" value="{{old('campoHoraIni')}}" id="campoHoraIni" required>
+                    <input type="time" class="form-control" name="campoHoraIni" value="{{old('campoHoraIni')}}" min="08:00" max="22:00" id="campoHoraIni" required>
                 </div>
                 <div>
                     <label for="campoHoraFim" class="form-label mt-3">Horário fim:</label>
-                    <input type="time" class="form-control" name="campoHoraFim" value="{{old('campoHoraFim')}}" id="campoHoraFim" required>
+                    <input type="time" class="form-control" name="campoHoraFim" value="{{old('campoHoraFim')}}" min="08:00" max="22:00" id="campoHoraFim" required>
                 </div>
             </div>
             <div>

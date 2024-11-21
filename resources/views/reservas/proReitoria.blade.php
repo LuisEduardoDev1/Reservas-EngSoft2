@@ -28,11 +28,11 @@
             <div class="nome">
                 <div>
                     <label for="campoHoraIni" class="form-label mt-3">Horário início:</label>
-                    <input type="time" class="form-control" name="campoHoraIni" value="{{old('campoHoraIni')}}" id="campoHoraIni" required>
+                    <input type="time" class="form-control" name="campoHoraIni" value="{{old('campoHoraIni')}}" id="campoHoraIni" min="08:00" max="22:00" required>
                 </div>
                 <div>
                     <label for="campoHoraFim" class="form-label mt-3">Horário fim:</label>
-                    <input type="time" class="form-control" name="campoHoraFim" value="{{old('campoHoraFim')}}" id="campoHoraFim" required>
+                    <input type="time" class="form-control" name="campoHoraFim" value="{{old('campoHoraFim')}}" id="campoHoraFim" min="08:00" max="22:00" required>
                 </div>
             </div>
             <div>

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -29,6 +30,72 @@ return new class extends Migration
             $table->date('updated_at')->nullable();
         });
         
+        DB::table('usuario')->insert([
+            [
+                'primeiro_nome' => 'PROFESSOR',
+                'sobrenome' => 'UESPI',
+                'senha' => '1111',
+                'cpf' => '123.456.789-00',
+                'email' => 'professor@uespi.br',
+                'tipo' => 2,
+                'remember_token' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'nome_proReitoria' => null,  // Campos não obrigatórios podem ser nulos
+                'universidade' => null,
+                'nome_prefeitura' => null,
+                'cnpj_prefeitura' => null,
+                'cidade' => null,
+            ],
+            [
+                'primeiro_nome' => 'DIRETOR',
+                'sobrenome' => 'UESPI',
+                'senha' => '1111',
+                'cpf' => '123.456.789-00',
+                'email' => 'diretor@uespi.br',
+                'tipo' => 3,
+                'remember_token' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'nome_proReitoria' => null,
+                'universidade' => null,
+                'nome_prefeitura' => null,
+                'cnpj_prefeitura' => null,
+                'cidade' => null,
+            ],
+            [
+                'primeiro_nome' => null,  // Se não for aplicável, pode deixar como null
+                'sobrenome' => null,
+                'senha' => '1111',
+                'cpf' => null,  // Campo CPF é opcional nesse caso
+                'email' => 'prefeitura@teresina.com',
+                'tipo' => 5,
+                'remember_token' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'nome_proReitoria' => null,
+                'universidade' => null,
+                'nome_prefeitura' => 'Prefeitura',
+                'cnpj_prefeitura' => '11111111111111',
+                'cidade' => 'TERESINA',
+            ],
+            [
+                'primeiro_nome' => null,
+                'sobrenome' => null,
+                'senha' => '1111',
+                'cpf' => null,
+                'email' => 'prop@uespi.br',
+                'tipo' => 4,
+                'remember_token' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'nome_proReitoria' => 'PROP',
+                'universidade' => 'UESPI',
+                'nome_prefeitura' => null,
+                'cnpj_prefeitura' => null,
+                'cidade' => null,
+            ],
+        ]);
     }
 
     public function down()
@@ -39,6 +106,5 @@ return new class extends Migration
         Schema::dropIfExists('diretores');
         Schema::dropIfExists('usuario');
     }
-
 
 };

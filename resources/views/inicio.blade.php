@@ -8,6 +8,7 @@
         #logo {
             display: flex;
             justify-self: center;
+            margin: 0 auto;
             }
     </style>
     

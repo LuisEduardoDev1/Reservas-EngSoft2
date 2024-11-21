@@ -26,6 +26,7 @@ class ReservaProf extends Model
         'descricao',
         'status',
         'id_professor',
-        'primeiro_nome'
+        'primeiro_nome',
+        'motivo_cancelamento'
     ];
 }
