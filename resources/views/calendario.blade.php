@@ -94,6 +94,21 @@
             var dialog = document.getElementById('popup');
             dialog.close();
         });
+
+        document.getElementById('campoSala').addEventListener('change', function () {
+            var salaSelecionada = this.value;
+
+            // Remove todos os eventos do calendário
+            calendar.removeAllEvents();
+
+            // Filtra os eventos pela sala selecionada
+            var eventosFiltrados = salaSelecionada
+                ? eventos.filter(event => event.local == salaSelecionada)
+                : eventos; // Se nenhuma sala for selecionada, exibe todos os eventos
+
+            // Adiciona os eventos filtrados ao calendário
+            calendar.addEventSource(eventosFiltrados);
+        });
     });
 </script>
 @endsection
