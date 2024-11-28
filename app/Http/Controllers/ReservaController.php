@@ -16,30 +16,37 @@ class ReservaController extends Controller
 
     public function verificarReservaProf($ini, $fim, $sala, $data){
         $verifica = ReservaProf::where('id_sala', $sala)
-        ->where('data', $data)
-        ->where(function($query) use ($ini) {
-            $query->whereTime('horario_inicio', '<=', $ini)
-                  ->whereTime('horario_fim', '>=', $ini);
-        })->orWhere(function($query) use ($fim) {
-            $query->whereTime('horario_inicio', '<=', $fim)
-                  ->whereTime('horario_fim', '>=', $fim);
-        })   
-        ->where('status', 'aprovado')->first();
-
+            ->where('data', $data)
+            ->where(function ($query) use ($ini, $fim) {
+                $query->where(function ($q) use ($ini) {
+                    $q->whereTime('horario_inicio', '<=', $ini)
+                      ->whereTime('horario_fim', '>=', $ini);
+                })->orWhere(function ($q) use ($fim) {
+                    $q->whereTime('horario_inicio', '<=', $fim)
+                      ->whereTime('horario_fim', '>=', $fim);
+                });
+            })
+            ->where('status', 'aprovado')
+            ->first();
+    
         return $verifica;        
     }
-
+    
     public function verificarReservaProRei($ini, $fim, $sala, $data){
         $verifica = ReservaProRei::where('id_sala', $sala)
-        ->where('data', $data)
-        ->where(function($query) use ($ini) {
-            $query->whereTime('horario_inicio', '<=', $ini)
-                  ->whereTime('horario_fim', '>=', $ini);
-        })->orWhere(function($query) use ($fim) {
-            $query->whereTime('horario_inicio', '<=', $fim)
-                  ->whereTime('horario_fim', '>=', $fim);
-        })->where('status', 'aprovado')->first();
-
+            ->where('data', $data)
+            ->where(function ($query) use ($ini, $fim) {
+                $query->where(function ($q) use ($ini) {
+                    $q->whereTime('horario_inicio', '<=', $ini)
+                      ->whereTime('horario_fim', '>=', $ini);
+                })->orWhere(function ($q) use ($fim) {
+                    $q->whereTime('horario_inicio', '<=', $fim)
+                      ->whereTime('horario_fim', '>=', $fim);
+                });
+            })
+            ->where('status', 'aprovado')
+            ->first();
+    
         return $verifica;        
     }
 
@@ -141,21 +148,28 @@ class ReservaController extends Controller
 
     public function calendario(){
         $reservas = collect(ReservaProf::where('status', 'aprovado')->get());
-    $reservasProRei = collect(ReservaProRei::where('status', 'aprovado')->get());
+        $reservasProRei = collect(ReservaProRei::where('status', 'aprovado')->get());
+        $salas = Salas::all();
 
         $eventos = $reservas->map(function ($reserva) {
             return [
-                'title' => $reserva->primeiro_nome, // Substitua 'nome' pelo campo desejado
-                'start' => $reserva->data,
+                'title' => $reserva->primeiro_nome,  // Nome da reserva (pode ser alterado conforme a necessidade)
+                'start' => $reserva->data . 'T' . $reserva->horario_inicio,  // Data e hora de início
+                'end' => $reserva->data . 'T' . $reserva->horario_fim, 
+                'description' => $reserva->descricao ?? 'Sem descrição',
+                'local' => $reserva->id_sala,
             ];
         })->merge($reservasProRei->map(function ($reservaProRei) {
             return [
-                'title' => 'Pró-Reitoria', // Substitua 'nome' pelo campo desejado
-                'start' => $reservaProRei->data,
+                'title' => 'Pró-Reitoria',  // Título fixo para a reserva da Pró-Reitoria
+                'start' => $reservaProRei->data . 'T' . $reservaProRei->horario_inicio,  // Data e hora de início
+                'end' => $reservaProRei->data . 'T' . $reservaProRei->horario_fim, 
+                'description' => $reservaProRei->descricao ?? 'Sem descrição',  // Descrição da reserva, caso exista
+                'local' => $reservaProRei->id_sala,
             ];
         }));
     
         // Envia os eventos para a view
-        return view('calendario', compact('eventos'));
+        return view('calendario', compact('eventos', 'salas'));
     }
 }
