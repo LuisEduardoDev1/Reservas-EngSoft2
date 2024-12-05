@@ -11,15 +11,15 @@
 </style>
 <main>
     <h1 class="text-center"><i class="fas fa-calendar-alt"></i> Calendário</h1>
-    <select class="form-select" aria-label="Default select example" id="campoSala" name="campoSala">
-        <option value="" disabled selected>Selecione uma sala</option>
+    <label for="campoSala">Selecione uma sala</label>
+    <select class="form-select mb-3" aria-label="Default select example" id="campoSala" name="campoSala">
+        <option value="" selected>Todas</option>
         @foreach ($salas as $sala)
             <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
         @endforeach
     </select>
     <div id='calendar'></div>
 
-    <!-- Dialog para mostrar os detalhes da reserva -->
     <dialog id="popup" class="popup">
         <div style="display: flex; justify-content:space-between;" class="mb-4">
             <h3>Detalhes da reserva:</h3>
@@ -28,7 +28,6 @@
             </div>
         </div>
         <div id="reservation-info">
-            <!-- Informações da reserva serão injetadas aqui -->
         </div>
     </dialog>
 </main>
@@ -46,6 +45,9 @@
             locale: 'pt-br',
             initialView: 'dayGridMonth',
             events: eventos, // Passa os eventos para o calendário
+            buttonText: {
+                today: 'Hoje' // Tradução do botão 'today' para 'Hoje'
+            },
 
             eventClick: function(info) {
         // Obtém os dados do evento

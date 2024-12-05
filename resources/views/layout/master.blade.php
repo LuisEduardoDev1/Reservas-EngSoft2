@@ -207,6 +207,9 @@
                                 <a class="dropdown-item" aria-current="page" href="{{route('ShowSalas')}}">Cadastradas</a>
                             </div>
                         </div>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('calendario')}}">Calendário</a>
+                        </li>
                         @else
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('ShowSalas')}}">Salas</a>
