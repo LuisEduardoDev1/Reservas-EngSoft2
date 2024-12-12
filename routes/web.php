@@ -52,6 +52,7 @@ Route::middleware(['auth', TipoUserController::class])->group(function () {
     Route::get('/reserva/professor', [ReservaController::class, 'profReserva'])->name('ProReservaSalas');
     Route::post('/reserva/professor', [ReservaController::class, 'profStore']);
     Route::get('reservas/minhas', [ReservaController::class, 'minhasReservas'])->name('MinhasReservas');
+    Route::get('/reserva/equipamento',  [ReservaController::class, 'viewEquipamento'])->name    ('ProfReservaSalas');
     
     //Rotas específicas prefeitura
     Route::get('/cadastro/salas', function () {return view('cadastro.salas');})->name('PreCadastroSalas');
@@ -64,7 +65,9 @@ Route::middleware(['auth', TipoUserController::class])->group(function () {
     //Rotas específicas Diretor
     Route::get('/cadastro/equipamentos', function () {return view('cadastro.equipamentos');})->name('DirCadastroEquipamentos');
     Route::post('/cadastro/equipamentos', [EquipamentosController::class, 'cadastrarEquipamento']);
-    Route::get('/reserva/diretor', function () {return view('reservas.diretor');})->name('DirReservaSalas');
+    
+
+
 });
 
 Route::get('/equipamentos/{id}/edit', [EquipamentosController::class, 'edit'])->name('DirEditEquipamentos');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipamentos;
 use App\Models\ReservaProf;
 use App\Models\ReservaProRei;
 use App\Models\Salas;
@@ -171,5 +172,11 @@ class ReservaController extends Controller
     
         // Envia os eventos para a view
         return view('calendario', compact('eventos', 'salas'));
+    }
+    
+    public function viewEquipamento (){
+        $equipamentos = Equipamentos::all();
+
+        return view('reservas.diretor', compact('equipamentos'));
     }
 }
