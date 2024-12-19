@@ -4,25 +4,23 @@
 
 <main>
 
-    <h1>Reserva de Equipamentos</h1>
+    <h1>Reserva de salas</h1>
 
     <form action="" method="post">
             @csrf
             <div class="nome">
                 <div>
-                    <label for="campoSala" class="form-label mt-3">Tipo:</label>
+                    <label for="campoSala" class="form-label mt-3">Salas:</label>
                     <select class="form-select" aria-label="Default select example" id="campoSala" name="campoSala">
-                    @foreach($equipamentos as $equipamento)
-                        <option value=""selected>{{$equipamento->nome}}</option>
-                    @endforeach  
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="Datashow">Datashow</option>
+                        <option value="Notebook">Notebook</option>
                     </select>
 
                 </div>
                 <div>
-
                     <label for="campoAno" class="form-label mt-3">Ano:</label>
                     <select class="form-select" aria-label="Default select example" id="campoAno" name="campoAno">
-                        
                         <option value="" disabled selected>Selecione</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
